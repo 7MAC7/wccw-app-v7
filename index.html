@@ -18,7 +18,7 @@
     <meta property="og:image" content="https://wccw.vercel.app/소녀상2.jpg">
     <meta property="og:url" content="https://wccw.vercel.app">
     
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/google/material-design-icons/master/png/action/account_balance/emerald/2x/account_balance_emerald_144dp.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/google/material-design-icons/master/png/action/account_balance/indigo/2x/account_balance_indigo_192dp.png">
     <link rel="manifest" href="manifest.json">
     
     <title>WCCW - 워싱턴 정대위</title>
@@ -30,11 +30,12 @@
           -webkit-tap-highlight-color: transparent;
           overscroll-behavior-y: none;
           background-color: #f9fafb;
+          /* 아이폰 노치 영역 대응 */
+          padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Smooth transitions for navigation */
         .animate-fadeIn {
           animation: fadeIn 0.4s ease-out;
         }

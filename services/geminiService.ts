@@ -4,8 +4,8 @@ import { GoogleGenAI } from "@google/genai";
 export class GeminiService {
   async askAssistant(prompt: string): Promise<string> {
     try {
-      // API_KEY는 Vercel 환경 변수에서 안전하게 호출됩니다.
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+      // 규칙: process.env.API_KEY를 직접 사용해야 하며, 빈 문자열 처리를 하지 않습니다.
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
@@ -28,13 +28,10 @@ export class GeminiService {
         },
       });
 
-      // response.text()가 아닌 .text 프로퍼티를 사용해야 함 (최신 가이드라인 반영)
+      // 규칙: response.text()가 아닌 .text 프로퍼티 사용
       return response.text || "죄송합니다. 답변을 생성하지 못했습니다. / Sorry, could not generate a response.";
     } catch (error) {
       console.error("Gemini API Error:", error);
-      if (error instanceof Error && error.message.includes("entity was not found")) {
-        return "API 설정을 확인 중입니다. 잠시 후 다시 시도해 주세요. / API key configuration error.";
-      }
       return "오류가 발생했습니다. 잠시 후 다시 시도해 주세요. / An error occurred. Please try again later.";
     }
   }
